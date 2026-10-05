@@ -46,8 +46,7 @@ def generate_launch_description():
             {
                 'robot_description': robot_description
             }
-        ],
-        output='screen'
+        ]
     )
 
     gazebo = IncludeLaunchDescription(
@@ -59,8 +58,8 @@ def generate_launch_description():
             )
         ),
         launch_arguments={
-            # 'gz_args': f'{world_path} -r'
-            'gz_args': '-r empty.sdf'
+            'gz_args': f'{world_path} -r'
+            # 'gz_args': '-r empty.sdf'
         }.items()
     )
 
@@ -70,8 +69,7 @@ def generate_launch_description():
         arguments=[
             '-topic',
             'robot_description'
-        ],
-        output='screen'
+        ]
     )
 
     ros_gz_bridge_node = Node(
@@ -81,8 +79,7 @@ def generate_launch_description():
             {
                 'config_file': gazebo_config_path
             }
-        ],
-        output='screen'
+        ]
     )
 
     rviz2_node = Node(
@@ -91,8 +88,7 @@ def generate_launch_description():
         arguments=[
             '-d',
             rviz_config_path
-        ],
-        output='screen'
+        ]
     )
 
     return LaunchDescription([
